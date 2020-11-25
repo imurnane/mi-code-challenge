@@ -5,7 +5,7 @@ One of the ways the MI team evaluates a potential Ridepooling service is by simu
 
 
 ## Your task
-The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of KPIs in database and see the simulation results visualized in some way accessible through a webpage.
+The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of the KPIs (booking distances) in database and see the simulation results visualized in some way accessible through a webpage.
 
 The code should not only fulfill the functional requirements but also be production-ready: that means clean, maintanable, well-documented, well-tested code with any necessary instructions to build/run it.
 
