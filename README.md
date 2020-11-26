@@ -5,16 +5,16 @@ One of the ways the MI team evaluates a potential Ridepooling service is by simu
 
 
 ## Your task
-The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of the KPIs (booking distances) in database and see the simulation results visualized in some way accessible through a webpage.
+The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of the KPIs (booking distance bins) in database and see the simulation results visualized in some way accessible through a webpage.
 
 The code should not only fulfill the functional requirements but also be production-ready: that means clean, maintanable, well-documented, well-tested code with any necessary instructions to build/run it.
 
 
 ### Requirements
 - A webpage where the user can trigger a simulation and see its results visualized.
-- Run the database connection file `db_connection.py` and read the bounding box from sqlite to be used as simulation input
+- Run the load data file `load_data.py` and read the bounding box of Berlin `de_berlin` from sqlite to be used as simulation input
 - An API where we can trigger the simulation and get the results back.
-- Save the results of the booking distances in the `booking_distance` table in sqlite
+- Save the results of the booking distance bins in the `booking_distance` table in sqlite
 - Visualize the most popular pickups and dropoffs from the results of the simulation. It's up to you to choose how to visualize the data and justify your choices.
 
 The documentation for the Simulator can be found in the `simulator` directory.
@@ -24,7 +24,7 @@ The documentation for the Simulator can be found in the `simulator` directory.
 - **User authentication/login.** You don't have to implement login, API keys, etc. Assume that if a user has access, they should.
 - **Any modifications to the Simulator.** Assume that it works as expected and outputs only what's necessary. Of course, if you would like to adjust the formatting of the payload for example to optimize/better match your visualization, you can do so. But please justify any changes accordingly.
 - **Customized input to trigger the simulation(s).** It's okay if the number of request input is hardcoded or randomized. A simple button to trigger the simulation via the front-end is enough. It is expected, though, that any mocking would be done in the front-end layer.
-- **Testing the functionality of the Simulator and database connection.**
+- **Testing the functionality of the Simulator.**
 
 
 ### Technical assumptions
