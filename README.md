@@ -28,8 +28,8 @@ The documentation for the Simulator can be found in the `simulator` directory.
 
 
 ### Technical assumptions
-- The API/wrapper around the Simulator module should be built with Python3 or preferred programming language.
-- The front-end/webpage should be built with [React](https://reactjs.org/) or any javascript alternative.
+- The API/wrapper around the Simulator module should preferably be built with Python3.
+- The front-end/webpage should preferably be built with [React](https://reactjs.org/).
 - Any simulations run is within [the boundaries of Berlin](https://www.openstreetmap.org/relation/62422#map=10/52.5072/13.4248).
 
 
