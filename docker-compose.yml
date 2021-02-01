@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+  # TO BE IMPLEMENTED
+  backend:
+    image: hello-world
+
+  # TO BE IMPLEMENTED
+  frontend:
+    image: hello-world 
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
+  

@@ -30,11 +30,12 @@ The documentation for the Simulator can be found in the `simulator` directory.
 ### Technical assumptions
 - The API/wrapper around the Simulator module should preferably be built with Python3.
 - The front-end/webpage should preferably be built with [React](https://reactjs.org/).
+- Your solution must run within the containers. Please provide short setup instructions.
 - Any simulations run is within [the boundaries of Berlin](https://www.openstreetmap.org/relation/62422#map=10/52.5072/13.4248).
 
 
 ### Optional extras
-- You don't have to submit a containerized solution, but it would be great if it was easily/reliably build-able/runnable.
+- You don't have to deploy the containerized solution.
 - Providing a way to compare the KPIs of different simulation runs.
 
 
