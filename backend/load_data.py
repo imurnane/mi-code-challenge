@@ -17,4 +17,4 @@ def load_data():
   except Error as err:
     print(str(err))
 
-load_data()
+#load_data()

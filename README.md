@@ -7,17 +7,19 @@ One of the ways the MI team evaluates a potential Ridepooling service is by simu
 ## Your task
 The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of the KPIs (booking distance bins) in database and see the simulation results in some way accessible through a webpage.
 
+The frontend and backend templates have been provided and setup instructions are found in their respective directories.
+
 The code should not only fulfill the functional requirements but also be production-ready: that means clean, maintanable, well-documented, well-tested code with any necessary instructions to build/run it.
 
 
 ### Requirements
 - A webpage where the user can trigger a simulation and see its results visualized.
-- Run the load data file `load_data.py` and read the bounding box of Berlin `de_berlin` from sqlite to be used as simulation input
+- Run the backend `seed_db` command and read the bounding box of Berlin `de_berlin` from sqlite to be used as simulation input
 - An API where we can trigger the simulation and get the results back.
 - Save the results of the booking distance bins in the `booking_distance` table in sqlite
 - Visualize the most popular pickups and dropoffs from the results of the simulation. It's up to you to choose how to visualize the data and justify your choices.
 
-The documentation for the Simulator can be found in the `simulator` directory.
+The documentation for the Simulator can be found in the `backend` directory.
 
 
 ### Out of scope
