@@ -7,7 +7,7 @@ One of the ways the MI team evaluates a potential Ridepooling service is by simu
 ## Your task
 The Simulator itself is ready to go. Your mission is to integrate it in a solution that enables users to trigger a simulation and save part of the KPIs (booking distance bins) in database and see the simulation results in some way accessible through a webpage.
 
-The frontend and backend templates have been provided and setup instructions are found in their respective directories.
+The frontend and backend templates have been provided and setup instructions are found in their respective directories.Please feel free to change the project architecture to your satisfaction.
 
 The code should not only fulfill the functional requirements but also be production-ready: that means clean, maintanable, well-documented, well-tested code with any necessary instructions to build/run it.
 
