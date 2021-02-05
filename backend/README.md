@@ -4,7 +4,22 @@ This module (`simulator.py`) provides a class `Simulator` that returns some mock
 
 ## Setup
 1. Initialize a virtual environment and install the requirements in `requirements.txt`.
-2. Adjust `Simulator.path_to_stops` based on the final architecture of the project/where it will be run from.
+```python
+pip install -r requirements.txt
+```
+2. Seed the database with this:
+```python
+python manage.py seed_db
+```
+3. Run the backend with this:
+```python
+python wsgi.py
+```
+4. Run the test with this:
+```python
+pip install pytest
+pytest
+```
 
 ## Usage
 - Create a `Simulator` instance (`Simulator(bounding_box)`) where `bounding_box` is a `tuple` that looks like this:
