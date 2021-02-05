@@ -14,7 +14,7 @@ The code should not only fulfill the functional requirements but also be product
 
 ### Requirements
 - A webpage where the user can trigger a simulation and see its results visualized.
-- Run the backend `seed_db` command and read the bounding box of Berlin `de_berlin` from sqlite to be used as simulation input
+- Run the backend `seed_db` command and read the bounding box of Berlin `de_berlin` from SQLite to be used as simulation input
 - An API where we can trigger the simulation and get the results back.
 - Save the results of the booking distance bins in the `booking_distance` table in sqlite
 - Visualize the most popular pickups and dropoffs from the results of the simulation. It's up to you to choose how to visualize the data and justify your choices.
