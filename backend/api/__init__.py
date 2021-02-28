@@ -51,7 +51,10 @@ class Simulations(Resource):
         ))
         conn.commit()
         cursor.close()
-        return result2
+
+        return {
+            'booking_distance_bins': booking_distance_bins,
+        }
 
 
 api.add_resource(Simulations, "/simulations")
