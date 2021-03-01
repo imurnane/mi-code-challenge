@@ -28,16 +28,14 @@ class Simulations(Resource):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM region_bounding_box WHERE region_id = ?", (region_id,))
         result = cursor.fetchone()
-        # print(result['region_name'])
         bounding_box = (
             float(result["min_longitude"]),
             float(result["min_latitude"]),
             float(result["max_longitude"]),
             float(result["max_latitude"]),
         )
-        result2 = Simulator(bounding_box).simulate(10)
-        booking_distance_bins = result2["booking_distance_bins"]
-        # print(booking_distance_bins["From 0->1km"])
+        data = Simulator(bounding_box).simulate(10)
+        booking_distance_bins = data["booking_distance_bins"]
         cursor.execute("""
             INSERT INTO booking_distance
             ('region_id', 'from_0_1', 'from_1_2', 'from_2_3', 'from_3_4')
@@ -52,9 +50,7 @@ class Simulations(Resource):
         conn.commit()
         cursor.close()
 
-        return {
-            'booking_distance_bins': booking_distance_bins,
-        }
+        return data
 
 
 api.add_resource(Simulations, "/simulations")

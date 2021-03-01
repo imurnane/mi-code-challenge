@@ -1,5 +1,5 @@
 import React from "react";
-import VisualiseResults from "./visualiseResults";
+import GraphBookingDistanceBins from "./graphBookingDistanceBins";
 import './App.css';
 
 export default class App extends React.Component {
@@ -15,6 +15,11 @@ export default class App extends React.Component {
       cache: "no-cache",
     });
     const result = await response.json();
+    result.most_popular_dropoff_points = JSON.parse(result.most_popular_dropoff_points);
+    result.most_popular_pickup_points = JSON.parse(result.most_popular_pickup_points);
+    console.log(result);
+    document.getElementById("button-fetch-simulation").style.display = "none";
+    document.getElementsByTagName("header")[0].className += " App-header-transition";
     this.setState({ result });
   };
 
@@ -25,17 +30,18 @@ export default class App extends React.Component {
           <p>
             Mobility Intelligence Code Challenge
           </p>
+        </header>
+        <section className="visualiseResults">
           <p>
             <button
+              id="button-fetch-simulation"
               type="button"
               onClick={ this.fetchSimulation }
               className="btn btn-primary">
                 Begin Simulation
             </button>
           </p>
-        </header>
-        <section>
-          <VisualiseResults result={this.state.result} />
+          <GraphBookingDistanceBins result={this.state.result} />
         </section>
       </div>
     );
