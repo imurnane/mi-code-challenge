@@ -1,20 +1,39 @@
-import json
-import unittest
+"""PyTest simulations.py"""
 
-from api.tests.base import BaseTestCase
+from mock import patch
 
-
-class TestSimulationsService(BaseTestCase):
-    """ Tests for the Simulation Service """
-
-    def test_simulations(self):
-        """ Ensure the /ping route behaves correctly. """
-        response = self.client.get("/simulations/ping")
-        data = json.loads(response.data.decode())
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("pong!", data["message"])
-        self.assertIn("success", data["status"])
+from api.simulations import Simulations
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_simulations(mocker):
+    """Check simulations is fetching, saving and returning
+    a correctly formatted dict
+
+    :param mocker: magic mock
+    :return: None
+    """
+    with patch.object(Simulations, "__init__", lambda x: None):
+        bounding_box = (13.3401, 52.5279, 13.5063, 52.5629)
+
+        mock_get_bounding_box = mocker.patch(
+            "api.simulations.Simulations._get_bounding_box",
+            return_value=bounding_box
+        )
+        mock_save_booking_distance = mocker.patch(
+            "api.simulations.Simulations._save_booking_distance"
+        )
+
+        simulations = Simulations()
+        data = simulations.get()
+
+        for key in data:
+            assert key in [
+                "booking_distance_bins",
+                "most_popular_dropoff_points",
+                "most_popular_pickup_points",
+                "bounding_box"
+            ]
+
+        assert data["bounding_box"] == bounding_box
+        assert mock_get_bounding_box.called is True
+        assert mock_save_booking_distance.called is True
