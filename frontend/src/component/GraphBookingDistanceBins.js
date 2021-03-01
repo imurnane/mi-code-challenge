@@ -1,14 +1,13 @@
-import {Bar, Doughnut} from "react-chartjs-2";
 import {cloneDeep} from "lodash";
+import {Bar, Doughnut} from "react-chartjs-2";
 
-export default function GraphBookingDistanceBins({ result }) {
-  if (result === null) return null;
 
+export default function GraphBookingDistanceBins({ data }) {
   const dataTemplate = {
-    labels: Object.keys(result.booking_distance_bins),
+    labels: Object.keys(data.booking_distance_bins),
     datasets: [{
       borderColor: "#282c34",
-      data: Object.values(result.booking_distance_bins),
+      data: Object.values(data.booking_distance_bins),
     }],
   };
 

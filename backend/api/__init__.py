@@ -50,6 +50,8 @@ class Simulations(Resource):
         conn.commit()
         cursor.close()
 
+        data.update({"bounding_box": bounding_box})
+
         return data
 
 

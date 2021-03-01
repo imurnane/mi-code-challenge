@@ -8,15 +8,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-header-transition {
   transition: min-height 500ms ease-out;
-  min-height: 35vh;
-}
-
-.visualiseResults {
-  color: white;
+  min-height: 10vh;
 }

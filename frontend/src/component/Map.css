@@ -1,0 +1,17 @@
+.map-container {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.marker-pickup, .marker-dropoff {
+  background-size: 27px 41px;
+  width: 27px;
+  height: 41px;
+}
+.marker-pickup {
+  background-image: url("../assets/marker_pickup.png");
+}
+.marker-dropoff {
+  background-image: url("../assets/marker_dropoff.png");
+}

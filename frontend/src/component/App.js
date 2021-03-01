@@ -1,37 +1,63 @@
 import React from "react";
-import GraphBookingDistanceBins from "./graphBookingDistanceBins";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import GraphBookingDistanceBins from "./GraphBookingDistanceBins";
+import Map from "./Map";
+
 import './App.css';
+
 
 export default class App extends React.Component {
   state = {
-    result: null,
+    data: null,
   };
 
   fetchSimulation = async () => {
-    const url = `${window.location.protocol}//${window.location.hostname}:5000/simulations`;
-    const response = await fetch(url, {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-    });
-    const result = await response.json();
-    result.most_popular_dropoff_points = JSON.parse(result.most_popular_dropoff_points);
-    result.most_popular_pickup_points = JSON.parse(result.most_popular_pickup_points);
-    console.log(result);
-    document.getElementById("button-fetch-simulation").style.display = "none";
-    document.getElementsByTagName("header")[0].className += " App-header-transition";
-    this.setState({ result });
+    try {
+      const url = `${window.location.protocol}//${window.location.hostname}:5000/simulations`;
+      const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+      });
+      const result = await response.json();
+      result.most_popular_dropoff_points = JSON.parse(result.most_popular_dropoff_points);
+      result.most_popular_pickup_points = JSON.parse(result.most_popular_pickup_points);
+
+      setTimeout(() => {
+        document.getElementsByTagName("header")[0].className += " App-header-transition"
+      }, 600);
+
+      this.setState({data: result});
+    }
+    catch (error) {
+      toast.error("Failed to fetch results..");
+    }
   };
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Mobility Intelligence Code Challenge
-          </p>
-        </header>
-        <section className="visualiseResults">
+  createContent() {
+    if (this.state.data) {
+      return (
+        <div>
+          <section className="mt-4">
+            <p>
+              Booking Distance Bins
+            </p>
+            <GraphBookingDistanceBins data={this.state.data} />
+          </section>
+          <section className="mt-4">
+            <p>
+              Popular Pickup / Dropoff Points
+            </p>
+            <Map data={this.state.data} />
+          </section>
+        </div>
+      );
+    }
+    else {
+      return (
+        <section>
           <p>
             <button
               id="button-fetch-simulation"
@@ -41,8 +67,21 @@ export default class App extends React.Component {
                 Begin Simulation
             </button>
           </p>
-          <GraphBookingDistanceBins result={this.state.result} />
         </section>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Mobility Intelligence Code Challenge
+          </p>
+        </header>
+        { this.createContent() }
+        <ToastContainer position="top-center" />
       </div>
     );
   }
