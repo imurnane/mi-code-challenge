@@ -6,8 +6,9 @@ Email: imurnane@internode.on.net
 
 import sqlite3
 
-from simulator import Simulator
 from flask_restful import Resource
+
+from simulator import Simulator
 
 
 class Simulations(Resource):

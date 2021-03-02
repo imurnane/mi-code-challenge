@@ -1,17 +1,19 @@
 import React from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import GraphBookingDistanceBins from "./GraphBookingDistanceBins";
 import Map from "./Map";
 
-import './App.css';
-
+import "./App.css";
 
 export default class App extends React.Component {
-  state = {
-    data: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+    };
+  }
 
   /**
    * Fetch simulated geolocation data from the backend server.
@@ -20,7 +22,7 @@ export default class App extends React.Component {
    *
    * @returns {Promise<void>}
    */
-  fetchSimulation = async () => {
+  async fetchSimulation() {
     try {
       const url = `${window.location.protocol}//${window.location.hostname}:5000/simulations`;
       const response = await fetch(url, {
@@ -35,15 +37,16 @@ export default class App extends React.Component {
 
       // animate reduced header spacing to better utilize content area
       setTimeout(() => {
-        document.getElementsByTagName("header")[0].className += " App-header-transition"
+        document.getElementsByTagName("header")[0].className += " App-header-transition";
       }, 600);
 
-      this.setState({data: result});
+      this.setState({ data: result });
     }
     catch (error) {
       toast.error("Failed to fetch results..");
+      console.error(error); // eslint-disable-line no-console
     }
-  };
+  }
 
   /**
    * Create the page layout depending on state
@@ -52,39 +55,40 @@ export default class App extends React.Component {
    * @returns {JSX.Element} Start button or simulated results
    */
   createContent() {
-    if (this.state.data) {
-      return (
-        <div>
-          <section className="mt-4">
-            <p>
-              Booking Distance Bins
-            </p>
-            <GraphBookingDistanceBins data={this.state.data} />
-          </section>
-          <section className="mt-4">
-            <p>
-              Popular Pickup / Dropoff Points
-            </p>
-            <Map data={this.state.data} />
-          </section>
-        </div>
-      );
-    }
-    else {
-      return (
-        <section>
+    const { data } = this.state;
+    return data ? (
+      <div>
+        <section className="mt-4">
           <p>
-            <button
-              id="button-fetch-simulation"
-              type="button"
-              onClick={ this.fetchSimulation }
-              className="btn btn-primary">
-                Begin Simulation
-            </button>
+            Booking Distance Bins
           </p>
+          <GraphBookingDistanceBins bookingDistanceBins={data.booking_distance_bins} />
         </section>
-      );
-    }
+        <section className="mt-4">
+          <p>
+            Popular Pickup / Dropoff Points
+          </p>
+          <Map
+            pickupPoints={data.most_popular_pickup_points}
+            dropoffPoints={data.most_popular_dropoff_points}
+            boundingBox={data.bounding_box}
+          />
+        </section>
+      </div>
+    ) : (
+      <section>
+        <p>
+          <button
+            id="button-fetch-simulation"
+            type="button"
+            onClick={this.fetchSimulation.bind(this)}
+            className="btn btn-primary"
+          >
+            Begin Simulation
+          </button>
+        </p>
+      </section>
+    );
   }
 
   /**

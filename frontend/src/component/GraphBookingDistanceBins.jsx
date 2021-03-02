@@ -1,19 +1,20 @@
-import {cloneDeep} from "lodash";
-import {Bar, Doughnut} from "react-chartjs-2";
-
+import React from "react";
+import PropTypes from "prop-types";
+import { cloneDeep } from "lodash";
+import { Bar, Doughnut } from "react-chartjs-2";
 
 /**
- * Output the supplied booking_distance_bins in an easy to read graphical format
+ * Output the supplied bookingDistanceBins in an easy to read graphical format
  *
- * @param {Object} booking_distance_bins dictionary
+ * @param {Object} bookingDistanceBins dictionary
  * @returns {JSX.Element} Bootstrap formatted container row including graphs
  */
-export default function GraphBookingDistanceBins({ data }) {
+export default function GraphBookingDistanceBins({ bookingDistanceBins }) {
   const dataTemplate = {
-    labels: Object.keys(data.booking_distance_bins),
+    labels: Object.keys(bookingDistanceBins),
     datasets: [{
       borderColor: "#282c34",
-      data: Object.values(data.booking_distance_bins),
+      data: Object.values(bookingDistanceBins),
     }],
   };
 
@@ -21,8 +22,8 @@ export default function GraphBookingDistanceBins({ data }) {
     legend: {
       labels: {
         fontColor: "#FFF",
-      }
-    }
+      },
+    },
   };
 
   const barOptions = {
@@ -33,21 +34,21 @@ export default function GraphBookingDistanceBins({ data }) {
       xAxes: [{
         ticks: {
           fontColor: "#FFF",
-        }
+        },
       }],
       yAxes: [{
         ticks: {
           beginAtZero: true,
           fontColor: "#FFF",
         },
-      }]
+      }],
     },
   };
 
   const doughnutData = cloneDeep(dataTemplate);
   const barData = cloneDeep(dataTemplate);
-  doughnutData.datasets[0].backgroundColor = [ "rgb(157, 2, 8)", "rgb(220, 47, 2)", "rgb(244, 140, 6)", "rgb(155, 186, 8)" ];
-  barData.datasets[0].backgroundColor = [ "rgb(2, 62, 138)", "rgb(0, 119, 182)", "rgb(0, 150, 199)", "rgb(0, 180, 216)" ];
+  doughnutData.datasets[0].backgroundColor = ["rgb(157, 2, 8)", "rgb(220, 47, 2)", "rgb(244, 140, 6)", "rgb(155, 186, 8)"];
+  barData.datasets[0].backgroundColor = ["rgb(2, 62, 138)", "rgb(0, 119, 182)", "rgb(0, 150, 199)", "rgb(0, 180, 216)"];
 
   return (
     <div className="container">
@@ -62,3 +63,7 @@ export default function GraphBookingDistanceBins({ data }) {
     </div>
   );
 }
+
+GraphBookingDistanceBins.propTypes = {
+  bookingDistanceBins: PropTypes.objectOf(PropTypes.number).isRequired,
+};
