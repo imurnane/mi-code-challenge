@@ -2,6 +2,12 @@ import {cloneDeep} from "lodash";
 import {Bar, Doughnut} from "react-chartjs-2";
 
 
+/**
+ * Output the supplied booking_distance_bins in an easy to read graphical format
+ *
+ * @param {Object} booking_distance_bins dictionary
+ * @returns {JSX.Element} Bootstrap formatted container row including graphs
+ */
 export default function GraphBookingDistanceBins({ data }) {
   const dataTemplate = {
     labels: Object.keys(data.booking_distance_bins),

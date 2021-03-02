@@ -7,7 +7,7 @@ from api.simulations import Simulations
 
 def test_simulations(mocker):
     """Check simulations is fetching, saving and returning
-    a correctly formatted dict
+    a correctly formatted dictionary
 
     :param mocker: magic mock
     :return: None

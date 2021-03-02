@@ -1,11 +1,18 @@
 import { useRef, useEffect } from "react";
 import mapboxgl from 'mapbox-gl';
 
+import 'mapbox-gl/dist/mapbox-gl.css';
 import "./Map.css";
 
 
 mapboxgl.accessToken = "pk.eyJ1IjoiaW11cm5hbmUiLCJhIjoiY2tscTlwcWg0MDgwNzJ1czFmMDBwMjJ5biJ9.ekTnFQfS_uqh6bF4YPjG0Q";
 
+/**
+ * Instantiate a MapBox map, zoom to the bounds and display relevant markers
+ *
+ * @param {Object} bounding_box and geolocation data
+ * @returns {JSX.Element} Initialised MapBox map
+ */
 export default function Map({ data }) {
   const mapContainer = useRef(null);
 
